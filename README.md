@@ -3,8 +3,8 @@
 Static preview of the proposed new homepage for [yesfullcircle.com](https://www.yesfullcircle.com/), prepared by The Digital Elites.
 
 - `index.html` — the page
-- `css/styles.css` — type system (Inter Tight, uppercase display headings, bar eyebrows, pill buttons) and YFC brand colours (lime → teal gradient, deep teal)
-- `js/main.js` — mobile menu, dropdowns, preview-only form confirmation
+- `css/styles.css` — type system (Inter Tight, uppercase display headings, bar eyebrows, pill buttons), brand colours, and the loop motif (rings, arcs, the process loop)
+- `js/main.js` — transparent-to-solid header, mobile menu, dropdowns, scroll reveal, process-loop hover sync, ESG gauge and count-up, preview-only form confirmation
 - `assets/` — logo, photography, awards and impact images from the current site, company profile, "Close the Loop" brochure and WRMEA cover story
 
 ## Notes for review
