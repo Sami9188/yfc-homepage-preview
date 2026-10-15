@@ -1,14 +1,32 @@
 # YES Full Circle Solutions — homepage redesign (preview)
 
-Static preview of the proposed new homepage for [yesfullcircle.com](https://www.yesfullcircle.com/), prepared by The Digital Elites.
+Live preview: https://sami9188.github.io/yfc-homepage-preview/
 
-- `index.html` — the page
-- `css/styles.css` — type system (Inter Tight, uppercase display headings, bar eyebrows, pill buttons), the client-approved "Green Lemons" palette (forest #013A20, emerald #478C5C, lint #BACC81, lemon #CDD193), and the loop motif (rings, arcs, the process loop)
-- `js/main.js` — transparent-to-solid header, mobile menu, dropdowns, scroll reveal, process-loop hover sync, ESG gauge and count-up, preview-only form confirmation
-- `assets/` — logo, photography, awards and impact images from the current site, company profile, "Close the Loop" brochure and WRMEA cover story
+The homepage follows the **YFC Brand Positioning and Website Content Brief**, sections 1–12, using its headings, copy, CTAs and interaction concepts.
 
-## Notes for review
+| # | Brief section | On the page |
+|---|---|---|
+| 1 | Hero | "More than waste management", circle visual with one action travelling around it |
+| 2 | What Full Circle Means | Split circle: Doing Good / To Do Good, tap or hover to reveal |
+| 2A | Purpose Manifesto | One Earth. One Family. — one continuous line through ocean, forest, materials, learning, health, opportunity, community |
+| 3 | The Full Circle Journey | Six steps, circular on desktop, swipeable on mobile |
+| 4 | Solutions | Six solution pathways |
+| 5 | Materials and Products | Material explorer with possible next steps per category |
+| 6 | Impact | Metrics with unit and period; pending-approval placeholders |
+| 7 | Stories of Good | Ocean, Education, Awareness, Health, Community |
+| 8 | Create Impact With Us | Schools, Workplaces, Communities |
+| 9 | Technology | One Simba, Full Circle Technology, Green Secure |
+| 10 | Industries | Ten industry groups |
+| 11 | Trust and Recognition | Controlled selection of proof logos and awards |
+| 12 | Final CTA | Contact form routed by enquiry type (solution, CSR, partnership, media) |
 
-- The contact form shows a confirmation state only; on the live build it will post to the client's mail handler or CRM.
-- Navigation links point to sections on this page for the preview. On the live build they go to the existing inner pages (About, Services, Solutions, Nespresso, YFC Re-Nu, Certifications & Awards, Impact, Blog, Press, FAQs, Contact).
-- Copy for the eight services, materials and industries comes from the client's "YFC Solutions and Services" document; the UAE firsts, mission and contact details come from the current site.
+## Files
+- `index.html`, `css/styles.css`, `js/main.js`
+- `assets/` — client imagery from the company profile, "Close the Loop" brochure and WRMEA cover story; `assets/proof/` holds certification and membership logos
+
+## Design system
+- Type: Inter Tight in The Digital Elites style (as requested). The brief specifies Poppins; switching is one line in `css/styles.css`.
+- Colour: client "Green Lemons" palette (forest #013A20, emerald #478C5C, lint #BACC81, lemon #CDD193) with cream for warmth.
+
+## Before launch (from brief §19 and §21)
+Figures, certificates, ratings, awards and technology descriptions are drafts from the company profile and are marked "Pending approval" on the page. Client logos need written permission. Links to inner pages (Solutions, Technology, Industries, Recognition, Insights, etc.) show a "planned for the next phase" notice. The form shows a confirmation state only.
