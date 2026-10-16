@@ -19,12 +19,19 @@
     });
   }
 
-  /* ---------- Header ---------- */
-  function onScroll() { header.classList.toggle('is-top', window.scrollY < 24); }
+  /* ---------- Header: transparent over the hero, compact and solid once scrolling ---------- */
+  function setHeaderHeight() {
+    // Measured only in the full-size state so the hero offset never shifts mid-scroll.
+    if (!header.classList.contains('is-compact')) document.documentElement.style.setProperty('--header-h', header.offsetHeight + 'px');
+  }
+  function onScroll() {
+    var scrolled = window.scrollY >= 24;
+    header.classList.toggle('is-top', !scrolled);
+    header.classList.toggle('is-compact', scrolled);
+  }
+  setHeaderHeight();
   window.addEventListener('scroll', onScroll, { passive: true });
   onScroll();
-  function setHeaderHeight() { document.documentElement.style.setProperty('--header-h', header.offsetHeight + 'px'); }
-  setHeaderHeight();
   window.addEventListener('resize', setHeaderHeight);
 
   toggle.addEventListener('click', function () {
@@ -33,7 +40,7 @@
     toggle.setAttribute('aria-label', open ? 'Open menu' : 'Close menu');
     nav.classList.toggle('is-open', !open);
     header.classList.toggle('is-menu-open', !open);
-    setHeaderHeight();
+    document.documentElement.style.setProperty('--drawer-top', Math.round(header.getBoundingClientRect().bottom) + 'px');
     // Lock scrolling on <html>, not <body>: body overflow would break the sticky header.
     document.documentElement.classList.toggle('menu-locked', !open);
   });
@@ -74,7 +81,7 @@
     });
   });
 
-  /* ---------- 2. Doing Good / To Do Good split circle ---------- */
+  /* ---------- 4. Doing Good / To Do Good split circle ---------- */
   var halves = document.querySelectorAll('.split__half');
   function setHalf(name) {
     halves.forEach(function (h) {
@@ -89,16 +96,7 @@
     h.addEventListener('mouseenter', function () { setHalf(h.dataset.half); });
   });
 
-  /* ---------- 2A. Manifesto line draws once in view ---------- */
-  var life = document.querySelector('.lifeline');
-  if (life && !(reduce || !canObserve)) {
-    var lifeIO = new IntersectionObserver(function (en) {
-      if (en[0].isIntersecting) { life.classList.add('is-in'); lifeIO.disconnect(); }
-    }, { threshold: 0.35 });
-    lifeIO.observe(life);
-  }
-
-  /* ---------- 3. Journey: list and loop stay in sync ---------- */
+  /* ---------- 6. Journey: list and loop stay in sync ---------- */
   var jsteps = document.querySelectorAll('.jstep'), jnodes = document.querySelectorAll('.loop__node');
   function setStep(n) {
     jsteps.forEach(function (s) {
@@ -152,14 +150,12 @@
     });
   });
 
-  /* ---------- 6. Impact gauge and counters ---------- */
-  var gauge = document.getElementById('gauge'), counters = document.querySelectorAll('.count');
-  if (!reduce && canObserve && gauge) {
-    gauge.classList.add('is-armed');
+  /* ---------- 2. Impact indicators count up once in view ---------- */
+  var indicators = document.querySelector('.indicators'), counters = document.querySelectorAll('.count');
+  if (!reduce && canObserve && indicators) {
     var io = new IntersectionObserver(function (entries) {
       if (!entries[0].isIntersecting) return;
       io.disconnect();
-      requestAnimationFrame(function () { gauge.classList.add('is-live'); });
       counters.forEach(function (el) {
         var target = parseInt(el.dataset.count, 10), start = performance.now(), dur = 1600;
         (function tick(now) {
@@ -168,11 +164,22 @@
           if (t < 1) requestAnimationFrame(tick);
         })(start);
       });
-    }, { threshold: 0.35 });
-    io.observe(gauge);
+    }, { threshold: 0.4 });
+    io.observe(indicators);
   }
 
-  /* ---------- 12. Contact form with enquiry routing ---------- */
+  /* ---------- Footer newsletter (preview only, not connected to a mailing list) ---------- */
+  var nl = document.getElementById('newsletter');
+  if (nl) nl.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var input = nl.querySelector('input');
+    if (!input.checkValidity()) { input.focus(); input.style.borderColor = '#E07A6A'; return; }
+    input.style.borderColor = '';
+    nl.querySelector('.newsletter__row').hidden = true;
+    nl.querySelector('.newsletter__done').hidden = false;
+  });
+
+  /* ---------- 9. Contact form with enquiry routing ---------- */
   var form = document.getElementById('contact-form');
   var typeSel = document.getElementById('f-type');
   function setRoute(v) {
