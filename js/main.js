@@ -33,7 +33,9 @@
     toggle.setAttribute('aria-label', open ? 'Open menu' : 'Close menu');
     nav.classList.toggle('is-open', !open);
     header.classList.toggle('is-menu-open', !open);
-    document.body.style.overflow = open ? '' : 'hidden';
+    setHeaderHeight();
+    // Lock scrolling on <html>, not <body>: body overflow would break the sticky header.
+    document.documentElement.classList.toggle('menu-locked', !open);
   });
   nav.querySelectorAll('a').forEach(function (a) {
     a.addEventListener('click', function () { if (nav.classList.contains('is-open')) toggle.click(); });

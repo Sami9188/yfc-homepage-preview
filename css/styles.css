@@ -117,8 +117,12 @@ html.js-motion .reveal.is-in { opacity: 1; transform: none; }
 .verify-note a { color: var(--green-ink); font-weight: 700; text-decoration: underline; text-underline-offset: 3px; }
 
 /* ---------- Header ---------- */
-.header { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 50; background: rgba(255,255,255,.96); backdrop-filter: saturate(160%) blur(10px); border-bottom: 1px solid var(--line);
-  transition: background-color .3s var(--ease), border-color .3s var(--ease); }
+/* The blur lives on a ::before layer, not the header itself: a backdrop-filter on
+   .header would make it the containing block for the fixed mobile menu and clip it. */
+.header { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 50; }
+.header::before { content: ""; position: absolute; inset: 0; z-index: -1; background: rgba(255,255,255,.96); backdrop-filter: saturate(160%) blur(10px); -webkit-backdrop-filter: saturate(160%) blur(10px);
+  border-bottom: 1px solid var(--line); transition: opacity .3s var(--ease); }
+html.menu-locked { overflow: hidden; }
 .header .wrap { max-width: 1400px; display: flex; align-items: center; justify-content: space-between; gap: 20px; min-height: 80px; }
 .brand { display: block; flex: none; }
 .brand img { height: 50px; width: auto; }
@@ -141,7 +145,7 @@ html.js-motion .reveal.is-in { opacity: 1; transform: none; }
 .nav-toggle[aria-expanded="true"] span { background: transparent !important; }
 .nav-toggle[aria-expanded="true"] span::before { transform: translateY(7px) rotate(45deg); }
 .nav-toggle[aria-expanded="true"] span::after { transform: translateY(-7px) rotate(-45deg); }
-.header.is-top:not(.is-menu-open) { background: transparent; border-color: transparent; backdrop-filter: none; }
+.header.is-top:not(.is-menu-open)::before { opacity: 0; }
 .header.is-top:not(.is-menu-open) .logo-dark { display: none; }
 .header.is-top:not(.is-menu-open) .logo-light { display: block; }
 .header.is-top:not(.is-menu-open) .nav > li > a, .header.is-top:not(.is-menu-open) .nav > li > button { color: #fff; }
@@ -149,7 +153,7 @@ html.js-motion .reveal.is-in { opacity: 1; transform: none; }
 .header.is-top:not(.is-menu-open) .nav-toggle span, .header.is-top:not(.is-menu-open) .nav-toggle span::before, .header.is-top:not(.is-menu-open) .nav-toggle span::after { background: #fff; }
 @media (max-width: 1340px) {
   .nav-toggle { display: inline-flex; }
-  .nav-wrap { position: fixed; inset: 0; top: var(--header-h, 80px); z-index: 40; background: #fff; padding: 8px var(--gutter) 40px; overflow-y: auto;
+  .nav-wrap { position: fixed; inset: 0; top: var(--header-h, 80px); z-index: 40; background: #fff; padding: 8px var(--gutter) calc(40px + env(safe-area-inset-bottom, 0px)); overflow-y: auto; overscroll-behavior: contain;
     transform: translateY(-110%); visibility: hidden; transition: transform .3s var(--ease), visibility 0s linear .3s; }
   .nav-wrap.is-open { transform: none; visibility: visible; transition-delay: 0s; }
   .nav { flex-direction: column; align-items: stretch; }
