@@ -179,23 +179,32 @@
     nl.querySelector('.newsletter__done').hidden = false;
   });
 
-  /* ---------- 9. Contact form with enquiry routing ---------- */
+  /* ---------- Contact form with enquiry routing (homepage and contact page) ---------- */
   var form = document.getElementById('contact-form');
+  if (!form) return;
   var typeSel = document.getElementById('f-type');
+  var ROUTES = ['solution', 'csr', 'partnership', 'media'];
   function setRoute(v) {
+    if (ROUTES.indexOf(v) < 0) return;
     typeSel.value = v;
     form.querySelectorAll('.route').forEach(function (fs) { fs.hidden = fs.dataset.route !== v; });
+    document.querySelectorAll('[data-route-pick]').forEach(function (b) { b.setAttribute('aria-pressed', String(b.dataset.routePick === v)); });
   }
   typeSel.addEventListener('change', function () { setRoute(typeSel.value); });
+  var qType = new URLSearchParams(location.search).get('type');
+  if (qType) setRoute(qType);
   document.querySelectorAll('[data-enquiry]').forEach(function (a) {
     a.addEventListener('click', function () { setRoute(a.dataset.enquiry); });
   });
+  function focusForm() {
+    form.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'center' });
+    setTimeout(function () { typeSel.focus({ preventScroll: true }); }, reduce ? 0 : 450);
+  }
+  document.querySelectorAll('[data-route-pick]').forEach(function (b) {
+    b.addEventListener('click', function () { setRoute(b.dataset.routePick); focusForm(); });
+  });
   document.querySelectorAll('[data-focus-form]').forEach(function (a) {
-    a.addEventListener('click', function (e) {
-      e.preventDefault();
-      form.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'center' });
-      setTimeout(function () { document.getElementById('f-type').focus({ preventScroll: true }); }, reduce ? 0 : 450);
-    });
+    a.addEventListener('click', function (e) { e.preventDefault(); focusForm(); });
   });
   form.addEventListener('submit', function (e) {
     e.preventDefault(); // Preview only: the live build routes submissions by enquiry type.
