@@ -1,13 +1,13 @@
-# YES Full Circle Solutions — homepage redesign (live preview)
+# YES Full Circle Solutions — website redesign (live preview)
 
 Live preview: https://sami9188.github.io/yfc-homepage-preview/
 
-`main` publishes the **homepage only**, following the **YFC Website Pagewise Content** document (Page 1, sections 1–9): navigation with Home, impact-first sections, and the technology wording from the Technology page brief.
+`main` publishes the **homepage** and **Our Story** page, following the **YFC Website Pagewise Content** document (Page 1 sections 1–9 and Page 2 sections 1–8).
 
-The other ten pages are built and kept on the [`full-site`](https://github.com/Sami9188/yfc-homepage-preview/tree/full-site) branch. They are not live yet, so on this homepage their links either scroll to the matching homepage section or show a "planned for the next phase" notice.
+The other nine pages are built and kept on the [`full-site`](https://github.com/Sami9188/yfc-homepage-preview/tree/full-site) branch. They are not live yet, so their links either scroll to the matching homepage section or show a "coming in the next phase" notice.
 
 ## Editing
-The homepage is built from `src/pages/index.html` with the shared header, footer and icons in `src/partials/`:
+Pages are built from `src/pages/` with the shared header, footer and icons in `src/partials/`. The pages published here are listed in `LIVE` in build.py:
 
     python3 build.py --live
 

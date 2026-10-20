@@ -2,7 +2,8 @@
 """Builds the static site: wraps each page in src/pages with the shared head,
 icons, header and footer from src/partials and writes it to the repo root.
 
-Run:  python3 build.py
+Run:  python3 build.py          (every page)
+      python3 build.py --live   (only the pages in LIVE, as published on main)
 Each page starts with a meta comment:
 <!--meta {"title": "...", "description": "...", "nav": "story"} -->
 """
@@ -22,26 +23,33 @@ INNER = {"our-story": "Our Story", "impact": "Impact and Stories", "solutions": 
          "technology": "Technology", "industries": "Industries", "re-nu": "YFC Re-Nu",
          "partnerships": "Partnerships", "insights": "Insights", "recognition": "Recognition",
          "contact": "Contact"}
+# Pages published on the live site (main). Add a page here to make it live.
+LIVE = {"index", "our-story"}
 LINK = re.compile(r'<a\b[^>]*>')
 
 
-def live_links(html):
+def live_links(html, slug):
+    """Rewrite links for the live build of page `slug`: links to live pages stay,
+    links to pages that are not live yet go to the matching homepage section
+    (data-live-href) or show the "next phase" notice."""
+    home = "" if slug == "index" else "index.html"
+
     def fix(m):
         tag = m.group(0)
         href = re.search(r'href="([^"]*)"', tag)
-        if not href:
-            return tag
-        target = href.group(1)
-        page = re.match(r"([a-z-]+)\.html", target)
-        if target == "index.html":
-            return tag.replace('href="index.html"', 'href="#top"')
-        if not page or page.group(1) not in INNER:
-            return tag
         live = re.search(r' data-live-href="([^"]*)"', tag)
         soon = re.search(r' data-live-soon="([^"]*)"', tag)
         tag = re.sub(r' data-live-(href|soon)="[^"]*"', "", tag)
+        if not href:
+            return tag
+        target = href.group(1)
+        if target == "index.html" and slug == "index":
+            return tag.replace('href="index.html"', 'href="#top"')
+        page = re.match(r"([a-z-]+)\.html", target)
+        if not page or page.group(1) not in INNER or page.group(1) in LIVE:
+            return tag
         if live:
-            return tag.replace(f'href="{target}"', f'href="{live.group(1)}"')
+            return tag.replace(f'href="{target}"', f'href="{home}{live.group(1)}"')
         name = soon.group(1) if soon else INNER[page.group(1)]
         return tag.replace(f'href="{target}"', f'href="#" data-soon="{name}"')
     return LINK.sub(fix, html)
@@ -82,7 +90,7 @@ def header_for(nav, slug):
     elif slug == "contact":
         h = h.replace("{{HOME_HREF}}", "index.html").replace("{{CTA_HREF}}", "#enquiry").replace("{{CTA_ATTR}}", " data-focus-form")
     else:
-        h = h.replace("{{HOME_HREF}}", "index.html").replace("{{CTA_HREF}}", "contact.html#enquiry").replace("{{CTA_ATTR}}", "")
+        h = h.replace("{{HOME_HREF}}", "index.html").replace("{{CTA_HREF}}", "contact.html#enquiry").replace("{{CTA_ATTR}}", ' data-live-href="#contact"')
     if nav:
         h = h.replace(f'data-nav="{nav}"', f'data-nav="{nav}" aria-current="page"', 1)
         parent = "more" if nav in MORE else nav if nav == "solutions" else None
@@ -96,7 +104,7 @@ def build(live=False):
     footer = read("footer.html")
     built = []
     for src in sorted((SRC / "pages").glob("*.html")):
-        if src.name.startswith("_") or (live and src.stem != "index"):
+        if src.name.startswith("_") or (live and src.stem not in LIVE):
             continue
         text = src.read_text()
         m = re.match(r"\s*<!--meta\s*(\{.*?\})\s*-->\s*", text, re.S)
@@ -116,10 +124,10 @@ def build(live=False):
             head + "\n" + symbols + "\n" + header_for(meta.get("nav"), slug) + "\n<main>\n\n" + body +
             "\n</main>\n\n" + footer + "\n<script src=\"js/main.js\" defer></script>\n<script src=\"js/pages.js\" defer></script>\n</body>\n</html>\n"
         )
-        page = live_links(page) if live else strip_live(page)
+        page = live_links(page, slug) if live else strip_live(page)
         (ROOT / f"{slug}.html").write_text(page)
         built.append(slug)
-    print("built" + (" (live, homepage only)" if live else "") + ":", ", ".join(built))
+    print("built" + (" (live pages only)" if live else "") + ":", ", ".join(built))
 
 
 if __name__ == "__main__":
