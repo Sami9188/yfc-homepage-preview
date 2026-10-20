@@ -74,7 +74,7 @@
   document.querySelectorAll('[data-soon]').forEach(function (a) {
     a.addEventListener('click', function (e) {
       e.preventDefault();
-      toast.innerHTML = '<b>' + a.dataset.soon + '</b> is an inner page planned for the next phase. This preview covers the homepage.';
+      toast.innerHTML = '<b>' + a.dataset.soon + '</b> is coming in the next phase of the website.';
       toast.hidden = false;
       clearTimeout(toastTimer);
       toastTimer = setTimeout(function () { toast.hidden = true; }, 3600);
