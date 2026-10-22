@@ -672,3 +672,7 @@ details > summary::-webkit-details-marker { display: none; }
 .det--office { grid-row: span 2; }
 @media (max-width: 1100px) { .details { grid-template-columns: repeat(2, minmax(0, 1fr)); } .det--office { grid-row: auto; } }
 @media (max-width: 560px) { .details { grid-template-columns: minmax(0, 1fr); } }
+
+/* ---------- Home: How the Good Begins carries the philosophy ---------- */
+.flow__tag { font-style: normal; font-size: 12px; font-weight: 800; letter-spacing: .07em; text-transform: uppercase; color: var(--lemon); padding: 3px 9px; border-radius: 999px; background: rgba(205,209,147,.14); }
+@media (max-width: 860px) { .flow li:has(.flow__tag) .flow__dot { grid-row: span 3; } .flow__tag { justify-self: start; } }
