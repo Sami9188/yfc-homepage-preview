@@ -4,6 +4,13 @@
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   function $(s, r) { return (r || document).querySelector(s); }
   function $$(s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); }
+  /* On the live site only some pages are published (body data-live-pages);
+     links built in script follow the same rules as build.py. */
+  var LIVE_PAGES = document.body.dataset.livePages ? document.body.dataset.livePages.split(' ') : null;
+  function enquiryHref(query) {
+    if (LIVE_PAGES && LIVE_PAGES.indexOf('contact') < 0) return 'index.html?' + query + '#contact';
+    return 'contact.html?' + query + '#enquiry';
+  }
   function esc(s) { return String(s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
 
   /* ---------- Open a <details> panel when the URL points at it ---------- */
@@ -160,7 +167,7 @@
       doneKicker: 'Activity complete',
       doneTitle: function (s, n) { return 'You matched ' + s + ' of ' + n + ' items to their usual route.'; },
       closing: 'The final route always depends on composition, condition and local requirements. That is why YFC assesses every load before deciding where it goes.',
-      ctaHref: 'contact.html?type=solution#enquiry', ctaLabel: 'Ask about your materials'
+      ctaHref: enquiryHref('type=solution'), ctaLabel: 'Ask about your materials'
     });
     $('[data-start="sort"]').addEventListener('click', function () { startSort(); sortRoot.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'center' }); });
   }
@@ -378,7 +385,7 @@
       $('#id-sols').innerHTML = d.sols.map(function (s) { return '<li><a href="solutions.html#' + s + '">' + esc(SOL[s]) + '<svg><use href="#i-arrow"/></svg></a></li>'; }).join('');
       $('#id-recovery').textContent = d.recovery; $('#id-engage').textContent = d.engage; $('#id-proof').textContent = d.proof;
       var cta = $('#id-cta');
-      cta.href = 'contact.html?type=solution&industry=' + encodeURIComponent(d.form) + '#enquiry';
+      cta.href = enquiryHref('type=solution&industry=' + encodeURIComponent(d.form));
       cta.innerHTML = 'Talk to Our ' + esc(name) + ' Team <svg><use href="#i-arrow"/></svg>';
       box.classList.remove('is-swap'); void box.offsetWidth; box.classList.add('is-swap');
       if (!first) $('#detail').scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });

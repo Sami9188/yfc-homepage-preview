@@ -24,7 +24,7 @@ INNER = {"our-story": "Our Story", "impact": "Impact and Stories", "solutions": 
          "partnerships": "Partnerships", "insights": "Insights", "recognition": "Recognition",
          "contact": "Contact"}
 # Pages published on the live site (main). Add a page here to make it live.
-LIVE = {"index", "our-story"}
+LIVE = {"index", "our-story", "impact", "solutions"}
 LINK = re.compile(r'<a\b[^>]*>')
 
 
@@ -48,6 +48,11 @@ def live_links(html, slug):
         page = re.match(r"([a-z-]+)\.html", target)
         if not page or page.group(1) not in INNER or page.group(1) in LIVE:
             return tag
+        if page.group(1) == "contact":
+            # Until the Contact page is live, enquiries use the homepage form,
+            # keeping the enquiry type (?type=...) so the form opens on the right route.
+            query = re.match(r"contact\.html(\?[^#]*)?", target).group(1) or ""
+            return tag.replace(f'href="{target}"', f'href="{home}{query}#contact"')
         if live:
             return tag.replace(f'href="{target}"', f'href="{home}{live.group(1)}"')
         name = soon.group(1) if soon else INNER[page.group(1)]
@@ -124,7 +129,11 @@ def build(live=False):
             head + "\n" + symbols + "\n" + header_for(meta.get("nav"), slug) + "\n<main>\n\n" + body +
             "\n</main>\n\n" + footer + "\n<script src=\"js/main.js\" defer></script>\n<script src=\"js/pages.js\" defer></script>\n</body>\n</html>\n"
         )
-        page = live_links(page, slug) if live else strip_live(page)
+        if live:
+            page = live_links(page, slug).replace(
+                f'<body class="page-{slug}">', f'<body class="page-{slug}" data-live-pages="{" ".join(sorted(LIVE))}">', 1)
+        else:
+            page = strip_live(page)
         (ROOT / f"{slug}.html").write_text(page)
         built.append(slug)
     print("built" + (" (live pages only)" if live else "") + ":", ", ".join(built))
