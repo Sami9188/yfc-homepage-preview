@@ -676,3 +676,8 @@ details > summary::-webkit-details-marker { display: none; }
 /* ---------- Home: How the Good Begins carries the philosophy ---------- */
 .flow__tag { font-style: normal; font-size: 12px; font-weight: 800; letter-spacing: .07em; text-transform: uppercase; color: var(--lemon); padding: 3px 9px; border-radius: 999px; background: rgba(205,209,147,.14); }
 @media (max-width: 860px) { .flow li:has(.flow__tag) .flow__dot { grid-row: span 3; } .flow__tag { justify-self: start; } }
+
+/* ---------- Home hero: "More than waste management" with the planting visual ---------- */
+.hero .eyebrow:not(.eyebrow--sig) { color: var(--lemon); }
+.hero h1 { max-width: 17ch; }
+.hero .lead { margin-bottom: 32px; }
