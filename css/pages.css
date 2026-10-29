@@ -686,9 +686,7 @@ details > summary::-webkit-details-marker { display: none; }
 .oneearth .ring-deco { width: 1200px; height: 1200px; left: -560px; top: -320px; opacity: .12; }
 .oneearth .wrap { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(36px, 6vw, 96px); align-items: center; }
 .oneearth h2 { max-width: 18ch; }
-.oneearth .lifeline__track { stroke: rgba(1,58,32,.1); }
-.oneearth .lifeline__nodes b { background: #fff; color: var(--text); }
-.oneearth .lifeline__nodes li:nth-child(n+4) .ln-ic { border-color: var(--emerald); }
+.oneearth { border-top: 1px solid rgba(205,209,147,.18); }
 .lifeline { position: relative; margin: 0 auto; width: min(100%, 500px); aspect-ratio: 1; container-type: inline-size; }
 .lifeline > svg { position: absolute; inset: 0; width: 100%; height: 100%; transform: rotate(-90deg); }
 .lifeline__track { fill: none; stroke: rgba(255,255,255,.1); stroke-width: 2; }
