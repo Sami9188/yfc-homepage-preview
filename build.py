@@ -24,7 +24,7 @@ INNER = {"our-story": "Our Story", "impact": "Impact and Stories", "solutions": 
          "partnerships": "Partnerships", "insights": "Insights", "recognition": "Recognition",
          "contact": "Contact"}
 # Pages published on the live site (main). Add a page here to make it live.
-LIVE = {"index", "our-story", "impact", "solutions"}
+LIVE = {"index", "our-story", "impact", "solutions", "technology", "industries"}
 LINK = re.compile(r'<a\b[^>]*>')
 
 
