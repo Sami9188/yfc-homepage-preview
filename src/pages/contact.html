@@ -1,0 +1,143 @@
+<!--meta {"title": "Contact | YES Full Circle Solutions", "description": "Tell us about the products, materials, risks or impact goals you are working with. Our team will help identify the next appropriate step.", "nav": "contact"} -->
+<!-- ============ 1. Hero ============ -->
+<section class="page-hero" aria-labelledby="ph-title">
+  <div class="ring-deco" aria-hidden="true"></div>
+  <div class="wrap">
+    <div class="page-hero__copy">
+      <nav class="crumbs" aria-label="Breadcrumb"><a href="index.html">Home</a><span aria-current="page">Contact</span></nav>
+      <p class="eyebrow">Contact</p>
+      <h1 id="ph-title">Let&#39;s Build the Right Full Circle Journey.</h1>
+      <p class="lead">Tell us what products, materials, risks or impact goals you are working with. Our team will help identify the next appropriate step.</p>
+      <div class="btn-row">
+        <a class="btn" href="#enquiry" data-focus-form>Start Your Full Circle Journey <svg><use href="#i-arrow"/></svg></a>
+      </div>
+    </div>
+    <aside class="quick" aria-label="Contact details">
+      <p class="kicker">Talk to us today</p>
+      <ul>
+        <li><span class="ic-badge"><svg><use href="#i-phone"/></svg></span><div><a href="tel:+97143466185">+971 4 346 6185</a><small>Call our team</small></div></li>
+        <li><span class="ic-badge"><svg><use href="#i-chat"/></svg></span><div><a href="https://wa.me/971543941781">+971 54 394 1781</a><small>WhatsApp</small></div></li>
+        <li><span class="ic-badge"><svg><use href="#i-mail"/></svg></span><div><a href="mailto:info@yesfullcircle.com">info@yesfullcircle.com</a><small>Email</small></div></li>
+        <li><span class="ic-badge"><svg><use href="#i-clock"/></svg></span><div><strong>Monday to Friday, 8am to 5pm</strong><small>Saturday and Sunday closed</small></div></li>
+      </ul>
+    </aside>
+  </div>
+</section>
+
+<!-- ============ 2. Enquiry options + form ============ -->
+<section class="section section--tint" id="enquiry" aria-labelledby="enq-title">
+  <div class="wrap enquiry">
+    <div class="reveal">
+      <p class="eyebrow">Enquiry options</p>
+      <h2 id="enq-title">Choose What You Would Like to Discuss.</h2>
+      <div class="routes" role="group" aria-label="Enquiry type">
+        <button class="route-opt" type="button" data-route-pick="solution" aria-pressed="true"><span class="ic-badge"><svg><use href="#i-recycle"/></svg></span><span><b>Solutions</b><small>Industry, product or material, location, estimated quantity and desired timeline</small></span></button>
+        <button class="route-opt" type="button" data-route-pick="csr" aria-pressed="false"><span class="ic-badge"><svg><use href="#i-people"/></svg></span><span><b>CSR and engagement</b><small>Audience, preferred activity, participant estimate, location, objective and timeframe</small></span></button>
+        <button class="route-opt" type="button" data-route-pick="partnership" aria-pressed="false"><span class="ic-badge"><svg><use href="#i-handshake"/></svg></span><span><b>Partnership</b><small>Partnership type, proposed contribution, location and message</small></span></button>
+        <button class="route-opt" type="button" data-route-pick="media" aria-pressed="false"><span class="ic-badge"><svg><use href="#i-news"/></svg></span><span><b>Media or speaking</b><small>Publication or event, topic, date, deadline and contact details</small></span></button>
+      </div>
+    </div>
+    <form class="form form--page reveal" id="contact-form" novalidate>
+      <div class="form-fields">
+        <div>
+          <h3>Start a Full Circle conversation</h3>
+          <p class="form-intro">Tell us what products, materials, risks or impact goals you are working with. Our team will help identify the next appropriate step.</p>
+        </div>
+        <div class="field field--full">
+          <label for="f-type">What would you like to talk about?</label>
+          <select id="f-type" name="enquiry_type">
+            <option value="solution">A solution for products or materials</option>
+            <option value="csr">A CSR or engagement programme</option>
+            <option value="partnership">A partnership</option>
+            <option value="media">Media or speaking</option>
+          </select>
+        </div>
+        <div class="form-grid">
+          <div class="field"><label for="f-name">Name</label><input id="f-name" name="name" type="text" autocomplete="name" required></div>
+          <div class="field"><label for="f-company">Company or organisation</label><input id="f-company" name="company" type="text" autocomplete="organization"></div>
+          <div class="field"><label for="f-email">Email</label><input id="f-email" name="email" type="email" autocomplete="email" required></div>
+          <div class="field"><label for="f-phone">Telephone</label><input id="f-phone" name="phone" type="tel" autocomplete="tel"></div>
+        </div>
+        <fieldset class="form-grid route" data-route="solution">
+          <legend class="sr-only">Solution details</legend>
+          <div class="field"><label for="f-industry">Industry</label><select id="f-industry" name="industry"><option value="">Select an industry</option><option>Fashion &amp; Lifestyle</option><option>Beauty &amp; Homecare</option><option>Consumer &amp; Retail</option><option>Food &amp; Hospitality</option><option>Mobility</option><option>Technology</option><option>Healthcare</option><option>Industrial</option><option>Supply Chain</option><option>Furniture &amp; Interiors</option><option>Other</option></select></div>
+          <div class="field"><label for="f-material">Product or material</label><input id="f-material" name="material" type="text"></div>
+          <div class="field"><label for="f-location">Location</label><input id="f-location" name="location" type="text"></div>
+          <div class="field"><label for="f-qty">Estimated quantity</label><input id="f-qty" name="quantity" type="text" placeholder="e.g. 2 pallets, 500 kg"></div>
+          <div class="field field--full"><label for="f-timeline">Desired timeline</label><input id="f-timeline" name="timeline" type="text"></div>
+        </fieldset>
+        <fieldset class="form-grid route" data-route="csr" hidden>
+          <legend class="sr-only">Programme details</legend>
+          <div class="field"><label for="f-audience">Audience</label><select id="f-audience" name="audience"><option>Schools and students</option><option>Employees and workplaces</option><option>Communities and partnerships</option></select></div>
+          <div class="field"><label for="f-activity">Preferred activity</label><input id="f-activity" name="activity" type="text" placeholder="e.g. collection drive, workshop"></div>
+          <div class="field"><label for="f-participants">Participant estimate</label><input id="f-participants" name="participants" type="text"></div>
+          <div class="field"><label for="f-csr-location">Location</label><input id="f-csr-location" name="csr_location" type="text"></div>
+          <div class="field"><label for="f-objective">Objective</label><input id="f-objective" name="objective" type="text"></div>
+          <div class="field"><label for="f-timeframe">Timeframe</label><input id="f-timeframe" name="timeframe" type="text"></div>
+        </fieldset>
+        <fieldset class="form-grid route" data-route="partnership" hidden>
+          <legend class="sr-only">Partnership details</legend>
+          <div class="field"><label for="f-ptype">Partnership type</label><select id="f-ptype" name="partnership_type"><option>Client partnership</option><option>Technology and processing</option><option>Community and educational</option><option>Environmental and impact</option><option>Innovation and upcycling</option></select></div>
+          <div class="field"><label for="f-p-location">Location</label><input id="f-p-location" name="p_location" type="text"></div>
+          <div class="field field--full"><label for="f-contribution">Proposed contribution</label><input id="f-contribution" name="contribution" type="text"></div>
+        </fieldset>
+        <fieldset class="form-grid route" data-route="media" hidden>
+          <legend class="sr-only">Media details</legend>
+          <div class="field"><label for="f-outlet">Publication or event</label><input id="f-outlet" name="outlet" type="text"></div>
+          <div class="field"><label for="f-topic">Topic</label><input id="f-topic" name="topic" type="text"></div>
+          <div class="field"><label for="f-date">Date</label><input id="f-date" name="date" type="text"></div>
+          <div class="field"><label for="f-deadline">Deadline</label><input id="f-deadline" name="deadline" type="text"></div>
+        </fieldset>
+        <div class="field field--full"><label for="f-msg">Message</label><textarea id="f-msg" name="message"></textarea></div>
+        <button class="btn" type="submit">Start the conversation <svg><use href="#i-arrow"/></svg></button>
+      </div>
+      <div class="form-success" role="status" tabindex="-1">
+        <h3>Thank You for Starting a Full Circle Conversation.</h3>
+        <p>A member of our team will review your enquiry and contact you regarding the appropriate next step.</p>
+      </div>
+    </form>
+  </div>
+</section>
+
+<!-- ============ 3. Contact details ============ -->
+<section class="section" id="details" aria-labelledby="det-title">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <p class="eyebrow">Contact details</p>
+      <h2 id="det-title">Where to Find Us.</h2>
+    </div>
+    <div class="details">
+      <article class="det det--office reveal">
+        <span class="ic-badge"><svg><use href="#i-pin"/></svg></span>
+        <p class="kicker">Head office</p>
+        <h3>YES Full Circle Solutions</h3>
+        <address>Unit 1, Plot 599-9012, Jebel Ali Industrial First<br>P.O. Box 71894, Dubai, United Arab Emirates</address>
+        <a class="link" href="https://www.google.com/maps/search/?api=1&amp;query=YES%20Full%20Circle%20Solutions%20Jebel%20Ali%20Industrial%20First%20Dubai" target="_blank" rel="noopener">Open in Google Maps <svg><use href="#i-arrow"/></svg></a>
+      </article>
+      <article class="det reveal">
+        <span class="ic-badge"><svg><use href="#i-phone"/></svg></span>
+        <p class="kicker">Telephone</p>
+        <p><a href="tel:+97143466185">+971 4 346 6185</a></p>
+        <p><a href="https://wa.me/971543941781">+971 54 394 1781</a> (WhatsApp)</p>
+      </article>
+      <article class="det reveal">
+        <span class="ic-badge"><svg><use href="#i-mail"/></svg></span>
+        <p class="kicker">Email</p>
+        <p><a href="mailto:info@yesfullcircle.com">info@yesfullcircle.com</a></p>
+      </article>
+      <article class="det reveal">
+        <span class="ic-badge"><svg><use href="#i-clock"/></svg></span>
+        <p class="kicker">Operating hours</p>
+        <p>Monday to Friday, 8am to 5pm</p>
+        <p>Saturday and Sunday closed</p>
+      </article>
+      <article class="det reveal">
+        <span class="ic-badge"><svg><use href="#i-globe"/></svg></span>
+        <p class="kicker">Facilities and group</p>
+        <p>Six facilities in the UAE, including Jebel Ali and Al Quoz.</p>
+        <p>YFC group: UAE, India and Singapore.</p>
+      </article>
+    </div>
+    <p class="verify-note reveal"><span class="verify">Pending approval</span> Facility addresses and map links to be confirmed.</p>
+  </div>
+</section>
