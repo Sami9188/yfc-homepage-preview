@@ -2,9 +2,9 @@
 
 Live preview: https://sami9188.github.io/yfc-homepage-preview/
 
-`main` publishes **Home**, **Our Story**, **Impact and Stories** and **Solutions**, following the **YFC Website Pagewise Content** document (Pages 1–4).
+`main` publishes **Home**, **Our Story**, **Impact and Stories**, **Solutions**, **Technology** and **Industries**, following the **YFC Website Pagewise Content** document and the client layout documents for Home, Impact and Our Story.
 
-The other seven pages are built and kept on the [`full-site`](https://github.com/Sami9188/yfc-homepage-preview/tree/full-site) branch. They are not live yet, so their links either scroll to the matching homepage section or show a "coming in the next phase" notice. Until the Contact page is live, enquiry buttons open the homepage form with the right enquiry type selected.
+The other five pages are built and kept on the [`full-site`](https://github.com/Sami9188/yfc-homepage-preview/tree/full-site) branch. They are not live yet, so their links either scroll to the matching homepage section or show a "coming in the next phase" notice. Until the Contact page is live, enquiry buttons open the homepage form with the right enquiry type selected.
 
 The 15 October version (Brand Positioning brief) is kept at `/oct-15/`.
 
