@@ -178,7 +178,7 @@ html.menu-locked { overflow: hidden; }
 /* ---------- 1. Hero ---------- */
 .hero { position: relative; overflow: hidden; color: #fff; isolation: isolate;
   background: radial-gradient(900px 600px at 8% -10%, rgba(205,209,147,.2), transparent 60%), radial-gradient(900px 700px at 96% 90%, rgba(71,140,92,.35), transparent 60%), linear-gradient(180deg, var(--forest-2) 0%, var(--forest) 100%);
-  margin-top: calc(-1 * var(--header-h, 80px)); padding: calc(var(--header-h, 80px) + clamp(48px, 7vw, 96px)) 0 clamp(80px, 9vw, 120px); min-height: min(100svh, 940px); display: flex; align-items: center; }
+  margin-top: calc(-1 * var(--header-h, 80px)); padding: calc(var(--header-h, 80px) + clamp(48px, 7vw, 96px)) 0 clamp(80px, 9vw, 120px); min-height: min(88svh, 820px); display: flex; align-items: center; }
 .hero::after { content: ""; position: absolute; inset: 0; background-image: var(--noise); opacity: .06; mix-blend-mode: overlay; pointer-events: none; }
 .hero .ring-deco { width: 1100px; height: 1100px; right: -320px; top: -260px; opacity: .16; }
 .hero .wrap { position: relative; z-index: 1; display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, .8fr); gap: clamp(40px, 6vw, 96px); align-items: center; }
