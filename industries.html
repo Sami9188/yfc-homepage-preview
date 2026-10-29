@@ -223,6 +223,147 @@
   </div>
 </section>
 
+<!-- ============ 4. Shared challenges ============ -->
+<section class="section" id="challenges" aria-labelledby="ch-title">
+  <div class="wrap">
+    <div class="section-head section-head--split reveal">
+      <div>
+        <p class="eyebrow">Shared challenges</p>
+        <h2 id="ch-title">Shared Challenges. Sector-Specific Answers.</h2>
+      </div>
+      <p class="lead" style="max-width:46ch">Many sectors face the same pressures in different forms. Choose a challenge to see where it often appears and how YFC responds.</p>
+    </div>
+    <div class="chx reveal">
+      <div class="chx__list" role="tablist" aria-label="Challenges">
+        <button class="chx__c" type="button" role="tab" id="ch-stock" aria-controls="chx-panel" aria-selected="true" data-ch="stock"><span class="ic-badge"><svg><use href="#i-box"/></svg></span>Expired, damaged or recalled stock</button>
+        <button class="chx__c" type="button" role="tab" id="ch-resale" aria-controls="chx-panel" aria-selected="false" data-ch="resale"><span class="ic-badge"><svg><use href="#i-shield"/></svg></span>Unauthorised resale</button>
+        <button class="chx__c" type="button" role="tab" id="ch-data" aria-controls="chx-panel" aria-selected="false" data-ch="data"><span class="ic-badge"><svg><use href="#i-shred"/></svg></span>Confidential data and records</button>
+        <button class="chx__c" type="button" role="tab" id="ch-mixed" aria-controls="chx-panel" aria-selected="false" data-ch="mixed"><span class="ic-badge"><svg><use href="#i-layers"/></svg></span>Mixed packaging and materials</button>
+        <button class="chx__c" type="button" role="tab" id="ch-special" aria-controls="chx-panel" aria-selected="false" data-ch="special"><span class="ic-badge"><svg><use href="#i-hazard"/></svg></span>Liquids, batteries and specialist items</button>
+        <button class="chx__c" type="button" role="tab" id="ch-report" aria-controls="chx-panel" aria-selected="false" data-ch="report"><span class="ic-badge"><svg><use href="#i-doc"/></svg></span>Reporting and audit expectations</button>
+      </div>
+      <div class="chx__panel" id="chx-panel" role="tabpanel" aria-labelledby="ch-stock">
+        <h3 id="chx-h"></h3>
+        <p class="chx__p" id="chx-p"></p>
+        <p class="kicker">Where it often appears <small>Select one to open it</small></p>
+        <ul class="chx__inds" id="chx-inds">
+          <li><button type="button" data-goto="fashion"><span class="chx__ic"><svg><use href="#i-shirt"/></svg></span>Fashion</button></li>
+          <li><button type="button" data-goto="beauty"><span class="chx__ic"><svg><use href="#i-spray"/></svg></span>Beauty</button></li>
+          <li><button type="button" data-goto="consumer"><span class="chx__ic"><svg><use href="#i-cart"/></svg></span>Retail</button></li>
+          <li><button type="button" data-goto="food"><span class="chx__ic"><svg><use href="#i-cup"/></svg></span>Food</button></li>
+          <li><button type="button" data-goto="mobility"><span class="chx__ic"><svg><use href="#i-car"/></svg></span>Mobility</button></li>
+          <li><button type="button" data-goto="technology"><span class="chx__ic"><svg><use href="#i-chip"/></svg></span>Technology</button></li>
+          <li><button type="button" data-goto="healthcare"><span class="chx__ic"><svg><use href="#i-medical"/></svg></span>Healthcare</button></li>
+          <li><button type="button" data-goto="industrial"><span class="chx__ic"><svg><use href="#i-factory"/></svg></span>Industrial</button></li>
+          <li><button type="button" data-goto="supply-chain"><span class="chx__ic"><svg><use href="#i-truck"/></svg></span>Supply chain</button></li>
+          <li><button type="button" data-goto="furniture"><span class="chx__ic"><svg><use href="#i-sofa"/></svg></span>Furniture</button></li>
+        </ul>
+        <p class="kicker">How YFC responds</p>
+        <ul class="idetail__links chx__sols" id="chx-sols"></ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 5. Find your pathway ============ -->
+<section class="section section--deep on-dark" id="pathway" aria-labelledby="pf-title">
+  <div class="wrap">
+    <div class="section-head section-head--split reveal">
+      <div>
+        <p class="eyebrow">Find your pathway</p>
+        <h2 id="pf-title">Two Questions. One Starting Point.</h2>
+      </div>
+      <p class="lead" style="max-width:46ch">Tell us what you need to manage and what matters most, and we will suggest where to start.</p>
+    </div>
+    <div class="pf reveal">
+      <form class="pf__form" onsubmit="return false">
+        <fieldset>
+          <legend><span>1</span>What do you need to manage?</legend>
+          <div class="chips">
+            <label class="chip-radio"><input type="radio" name="pf-what" value="stock" checked><span>Expired, damaged or recalled stock</span></label>
+            <label class="chip-radio"><input type="radio" name="pf-what" value="unsold"><span>Unsold or returned branded goods</span></label>
+            <label class="chip-radio"><input type="radio" name="pf-what" value="it"><span>IT equipment and devices</span></label>
+            <label class="chip-radio"><input type="radio" name="pf-what" value="records"><span>Confidential documents</span></label>
+            <label class="chip-radio"><input type="radio" name="pf-what" value="packaging"><span>Packaging and mixed materials</span></label>
+            <label class="chip-radio"><input type="radio" name="pf-what" value="scrap"><span>Scrap metal and equipment</span></label>
+            <label class="chip-radio"><input type="radio" name="pf-what" value="furniture"><span>Furniture and fixtures</span></label>
+            <label class="chip-radio"><input type="radio" name="pf-what" value="special"><span>Liquids, aerosols or batteries</span></label>
+          </div>
+        </fieldset>
+        <fieldset>
+          <legend><span>2</span>What matters most?</legend>
+          <div class="chips">
+            <label class="chip-radio"><input type="radio" name="pf-why" value="brand" checked><span>Protecting our brand</span></label>
+            <label class="chip-radio"><input type="radio" name="pf-why" value="recovery"><span>Recovering as much as possible</span></label>
+            <label class="chip-radio"><input type="radio" name="pf-why" value="proof"><span>Documentation for audits</span></label>
+            <label class="chip-radio"><input type="radio" name="pf-why" value="people"><span>Involving our people</span></label>
+          </div>
+        </fieldset>
+      </form>
+      <div class="pf__out" aria-live="polite">
+        <p class="kicker">Suggested starting point</p>
+        <h3 id="pf-h"></h3>
+        <p id="pf-p"></p>
+        <ul class="idetail__links" id="pf-sols"></ul>
+        <a class="btn" id="pf-cta" href="contact.html?type=solution#enquiry">Discuss This Pathway <svg><use href="#i-arrow"/></svg></a>
+      </div>
+    </div>
+    <p class="verify-note reveal">A suggestion to start the conversation. Every pathway is confirmed after we assess the products and materials.</p>
+  </div>
+</section>
+
+<!-- ============ 6. Sector examples ============ -->
+<section class="section section--cream" id="examples" aria-labelledby="ex-title">
+  <div class="wrap">
+    <div class="section-head section-head--split reveal">
+      <div>
+        <p class="eyebrow">Across sectors</p>
+        <h2 id="ex-title">Trusted by Organisations Across Sectors.</h2>
+      </div>
+      <p class="lead" style="max-width:46ch">Selected work with brands, retailers, schools and public partners. Choose a card to open that industry.</p>
+    </div>
+    <div class="exs">
+      <article class="ex reveal">
+        <img src="assets/impact-kiko.jpg" alt="KIKO Milano staff at a recycling programme launch" width="262" height="215" loading="lazy">
+        <div class="ex__body">
+          <span class="tag">Beauty and Homecare</span>
+          <h3>Cosmetics Recycling With KIKO Milano</h3>
+          <p>A recycling programme launched with the KIKO Milano team in 2025.</p>
+          <button class="link" type="button" data-goto="beauty">See Beauty and Homecare <svg><use href="#i-arrow"/></svg></button>
+        </div>
+      </article>
+      <article class="ex reveal">
+        <img src="assets/impact-gems-omo.jpg" alt="An OMO Waste for Good collection bin at a GEMS school" width="261" height="204" loading="lazy">
+        <div class="ex__body">
+          <span class="tag">Consumer and Retail</span>
+          <h3>Waste for Good</h3>
+          <p>A school recycling programme with OMO Unilever and GEMS Education.</p>
+          <button class="link" type="button" data-goto="consumer">See Consumer and Retail <svg><use href="#i-arrow"/></svg></button>
+        </div>
+      </article>
+      <article class="ex reveal">
+        <img src="assets/impact-dm-ewaste.jpg" alt="An e-waste programme with Dubai Municipality" width="265" height="196" loading="lazy">
+        <div class="ex__body">
+          <span class="tag">Technology</span>
+          <h3>E-Waste With Dubai Municipality</h3>
+          <p>An e-waste collection and recycling programme for electronics that need secure, responsible handling.</p>
+          <button class="link" type="button" data-goto="technology">See Technology <svg><use href="#i-arrow"/></svg></button>
+        </div>
+      </article>
+      <article class="ex reveal">
+        <img src="assets/impact-ace-trees.jpg" alt="An ACE Tree-Cycle collection point with Christmas trees" width="492" height="429" loading="lazy">
+        <div class="ex__body">
+          <span class="tag">Consumer and Retail</span>
+          <h3>Tree-Cycle With ACE</h3>
+          <p>The UAE's first circular-economy Christmas tree recycling programme.</p>
+          <button class="link" type="button" data-goto="consumer">See Consumer and Retail <svg><use href="#i-arrow"/></svg></button>
+        </div>
+      </article>
+    </div>
+    <p class="verify-note reveal"><span class="verify">Pending approval</span> Examples drafted from YFC's website and company profile. Partner names, roles and photographs to be approved by each partner before launch.</p>
+  </div>
+</section>
+
 <!-- ============ Final CTA ============ -->
 <section class="cta-band" aria-labelledby="cta-title">
   <div class="ring-deco" aria-hidden="true"></div>

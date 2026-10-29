@@ -404,6 +404,169 @@
     pick(indCards[0]);
   }
 
+  /* ---------- Shared tab behaviour: click and arrow keys ---------- */
+  function tabs(btns, set) {
+    btns.forEach(function (t, i) {
+      t.addEventListener('click', function () { set(t); });
+      t.addEventListener('keydown', function (e) {
+        var n = e.key === 'ArrowDown' || e.key === 'ArrowRight' ? 1 : e.key === 'ArrowUp' || e.key === 'ArrowLeft' ? -1 : 0;
+        if (!n) return; e.preventDefault();
+        var nx = btns[(i + n + btns.length) % btns.length]; set(nx); nx.focus();
+      });
+    });
+  }
+  function select(btns, btn) { btns.forEach(function (b) { var on = b === btn; b.setAttribute('aria-selected', String(on)); b.tabIndex = on ? 0 : -1; }); }
+  function swap(el) { el.classList.remove('is-swap'); void el.offsetWidth; el.classList.add('is-swap'); }
+  function links(list) { return list.map(function (l) { return '<li><a href="' + l[0] + '">' + esc(l[1]) + '<svg><use href="#i-arrow"/></svg></a></li>'; }).join(''); }
+  function solLinks(keys) { return keys.map(function (s) { return ['solutions.html#' + s, SOL[s]]; }); }
+  var DOC_LINK = ['technology.html#receive', 'How We Document Outcomes'];
+
+  /* ---------- Technology: questions the systems answer ---------- */
+  var QA = {
+    what: { sys: ['simba', 'gs'], a: 'Each job is recorded from collection to processing, so you can see when your products were collected, received and processed, and how.', rec: 'Collection and processing records, and a certificate where it applies.' },
+    agreed: { sys: ['gs'], a: 'Checkpoints along the journey build an evidence trail showing that products were handled as agreed, supporting brand protection and fraud prevention.', rec: 'An evidence trail that supports your certificate.' },
+    where: { sys: ['simba', 'gs'], a: 'Material movements are recorded, so the pathway each material followed (recycling, recovery, upcycling or another suitable route) can be documented.', rec: 'Material pathway and mass balance information.' },
+    much: { sys: ['simba'], a: 'Quantities received and recovered are brought together, so outcomes are reported with a clear unit, period, boundary and method.', rec: 'Mass balance information and reporting.' },
+    prog: { sys: ['fct'], a: 'Programme set-up, participation and activity sit in one place for clients, partners and participants, so a take-back or engagement programme is easier to run, join and report on.', rec: 'Programme and participation information.' },
+    good: { sys: ['simba', 'fct'], a: 'Impact information connects responsible action to the environmental, educational and community initiatives it helps support.', rec: 'Impact information for your sustainability and ESG reporting.' }
+  };
+  var qaBtns = $$('.qa__q');
+  if (qaBtns.length) {
+    var qaPanel = $('#qa-panel'), qaSys = $$('.qa__sys li');
+    var setQ = function (btn) {
+      var d = QA[btn.dataset.q];
+      select(qaBtns, btn);
+      qaSys.forEach(function (li) { li.classList.toggle('is-on', d.sys.indexOf(li.dataset.sys) > -1); });
+      $('#qa-a').textContent = d.a; $('#qa-rec').textContent = d.rec;
+      qaPanel.setAttribute('aria-labelledby', btn.id); swap(qaPanel);
+    };
+    tabs(qaBtns, setQ); setQ(qaBtns[0]);
+  }
+
+  /* ---------- Technology: follow one consignment ---------- */
+  var TRIP = [
+    { h: 'Request and Assessment', p: 'You tell us what needs to be managed. We review the products, their condition and any requirements, then agree the route and the documentation you need.', rec: 'Job details, product information and agreed requirements.', sys: 'One Simba' },
+    { h: 'Collection', p: 'The products are collected from your site and transported to a YFC facility.', rec: 'Collection details and what was collected.', sys: 'One Simba and Green Secure' },
+    { h: 'Receiving', p: 'The consignment is received at the facility and checked against what was collected.', rec: 'Quantities received and a checkpoint on arrival.', sys: 'One Simba and Green Secure' },
+    { h: 'Secure Processing', p: 'Products are debranded or destroyed as agreed, then segregated by material.', rec: 'Processing records and checkpoints that add to the evidence trail.', sys: 'Green Secure and One Simba' },
+    { h: 'Recovery', p: 'Each material follows the most suitable available pathway: recycling, recovery, upcycling or another approved route.', rec: 'Material movements and the pathway each material followed.', sys: 'One Simba' },
+    { h: 'Certificate and Reporting', p: 'Outcomes are documented and shared with you, ready for audits, leadership updates and sustainability reporting.', rec: 'Certificate, mass balance information and reporting.', sys: 'One Simba and Green Secure' }
+  ];
+  var tripBtns = $$('.trip__steps button');
+  if (tripBtns.length) {
+    var trip = $('.trip'), tPanel = $('#trip-panel'), playBtn = $('[data-trip-play]'), timer = null, cur = 0;
+    var setStep = function (i) {
+      cur = i; var d = TRIP[i];
+      select(tripBtns, tripBtns[i]);
+      tripBtns.forEach(function (b, j) { b.parentNode.classList.toggle('is-done', j <= i); });
+      trip.style.setProperty('--p', i / (TRIP.length - 1));
+      $('#trip-h').textContent = d.h; $('#trip-p').textContent = d.p; $('#trip-rec').textContent = d.rec; $('#trip-sys').textContent = d.sys;
+      $('#trip-count').textContent = 'Step ' + (i + 1) + ' of ' + TRIP.length;
+      tPanel.setAttribute('aria-labelledby', tripBtns[i].id); swap(tPanel);
+    };
+    var stop = function () {
+      clearInterval(timer); timer = null; trip.classList.remove('is-playing');
+      playBtn.setAttribute('aria-pressed', 'false'); playBtn.querySelector('span').textContent = cur === TRIP.length - 1 ? 'Play Again' : 'Play the Journey';
+    };
+    var play = function () {
+      if (cur === TRIP.length - 1) setStep(0);
+      trip.classList.add('is-playing'); playBtn.setAttribute('aria-pressed', 'true'); playBtn.querySelector('span').textContent = 'Pause';
+      timer = setInterval(function () { setStep(cur + 1); if (cur === TRIP.length - 1) stop(); }, 2600);
+    };
+    playBtn.addEventListener('click', function () { if (timer) stop(); else play(); });
+    tabs(tripBtns, function (b) { if (timer) stop(); setStep(+b.dataset.step); });
+    setStep(0);
+    // play once, the first time the journey scrolls into view
+    if (!reduce && 'IntersectionObserver' in window) {
+      var tio = new IntersectionObserver(function (en) { if (en[0].isIntersecting) { tio.disconnect(); if (cur === 0 && !timer) play(); } }, { threshold: 0.6 });
+      tio.observe(trip);
+    }
+  }
+
+  /* ---------- Technology: sample documents ---------- */
+  var docTabs = $$('.docs__tab');
+  if (docTabs.length) {
+    var papers = $$('.paper'), stage = $('#docs-stage'), order = docTabs.map(function (t) { return t.dataset.doc; });
+    var setDoc = function (btn) {
+      var i = order.indexOf(btn.dataset.doc), rot = order.slice(i).concat(order.slice(0, i));
+      select(docTabs, btn);
+      papers.forEach(function (p) { var pos = rot.indexOf(p.dataset.paper); p.dataset.pos = pos; p.setAttribute('aria-hidden', String(pos !== 0)); });
+      stage.setAttribute('aria-labelledby', btn.id);
+    };
+    tabs(docTabs, setDoc);
+    papers.forEach(function (p) { p.addEventListener('click', function () { if (p.dataset.pos !== '0') setDoc($('.docs__tab[data-doc="' + p.dataset.paper + '"]')); }); });
+    setDoc(docTabs[0]);
+  }
+
+  /* ---------- Industries: shared challenges ---------- */
+  var ALL_IND = ['fashion', 'beauty', 'consumer', 'food', 'mobility', 'technology', 'healthcare', 'industrial', 'supply-chain', 'furniture'];
+  var CH = {
+    stock: { h: 'Expired, Damaged or Recalled Stock', p: 'Products that can no longer be sold still carry your name. They need to leave the market for good, with proof that they did.', inds: ['fashion', 'beauty', 'consumer', 'food', 'healthcare', 'supply-chain'], sols: ['brand-protection', 'secure-destruction'] },
+    resale: { h: 'Unauthorised Resale', p: 'Unsold, returned or obsolete branded goods can reappear in grey markets if they are not handled securely.', inds: ['fashion', 'beauty', 'consumer', 'mobility', 'technology', 'supply-chain'], sols: ['brand-protection', 'secure-destruction'] },
+    data: { h: 'Confidential Data and Records', p: 'Devices, storage media and records can hold sensitive information that must be destroyed securely before materials are recovered.', inds: ['technology', 'healthcare', 'consumer'], sols: ['shredding', 'secure-destruction'] },
+    mixed: { h: 'Mixed Packaging and Materials', p: 'Mixed materials lose recovery value unless they are separated and sent to the right pathway.', inds: ['consumer', 'food', 'beauty', 'industrial', 'supply-chain', 'furniture'], sols: ['zero-waste', 'secure-destruction', 'upcycling'] },
+    special: { h: 'Liquids, Batteries and Specialist Items', p: 'Aerosols, fluids, batteries and hazardous components need specialist handling and approved routes.', inds: ['beauty', 'mobility', 'technology', 'healthcare', 'industrial'], sols: ['hazardous'] },
+    report: { h: 'Reporting and Audit Expectations', p: 'Brand owners, auditors and sustainability teams increasingly expect documented outcomes, not just a collection receipt.', inds: ALL_IND, sols: ['secure-destruction', 'zero-waste'], doc: true }
+  };
+  var chBtns = $$('.chx__c');
+  if (chBtns.length) {
+    var chPanel = $('#chx-panel'), chInds = $$('#chx-inds button');
+    var setCh = function (btn) {
+      var d = CH[btn.dataset.ch], l = solLinks(d.sols);
+      if (d.doc) l.push(DOC_LINK);
+      select(chBtns, btn);
+      $('#chx-h').textContent = d.h; $('#chx-p').textContent = d.p; $('#chx-sols').innerHTML = links(l);
+      chInds.forEach(function (b) { b.classList.toggle('is-on', d.inds.indexOf(b.dataset.goto) > -1); });
+      chPanel.setAttribute('aria-labelledby', btn.id); swap(chPanel);
+    };
+    tabs(chBtns, setCh); setCh(chBtns[0]);
+  }
+  // Buttons that open an industry in the detail panel
+  $$('[data-goto]').forEach(function (b) {
+    b.addEventListener('click', function () { var c = $('.ind-card[data-pick="' + b.dataset.goto + '"]'); if (c) c.click(); });
+  });
+
+  /* ---------- Industries: find your pathway ---------- */
+  var PF_WHAT = {
+    stock: { sols: ['brand-protection', 'secure-destruction'], p: 'Products that can no longer be sold are removed from the market for good, then segregated so materials can be recovered.' },
+    unsold: { sols: ['brand-protection', 'secure-destruction', 'upcycling'], p: 'Unsold and returned goods are debranded or securely destroyed, and suitable items or materials can be upcycled.' },
+    it: { sols: ['shredding', 'secure-destruction', 'hazardous'], p: 'Devices and storage media are destroyed securely to protect data, then metals and components are recovered.' },
+    records: { sols: ['shredding'], p: 'Documents and records are shredded securely, then the paper is recycled.' },
+    packaging: { sols: ['zero-waste', 'secure-destruction'], p: 'Mixed packaging is segregated by material so each stream can follow the most suitable pathway.' },
+    scrap: { sols: ['scrap-metal', 'hazardous'], p: 'Ferrous and non-ferrous metals are collected, segregated and returned to the resource cycle.' },
+    furniture: { sols: ['upcycling', 'scrap-metal', 'zero-waste'], p: 'Furniture and fixtures are reused, repaired or upcycled where suitable, and wood and metals are recycled.' },
+    special: { sols: ['hazardous', 'secure-destruction'], p: 'Liquids, aerosols and batteries are handled through specialist, approved recovery or disposal routes.' }
+  };
+  var PF_WHY = {
+    brand: 'Items can be debranded or securely destroyed so they cannot re-enter the market.',
+    recovery: 'We look for the route that keeps the most value in use: reuse, recycling, upcycling or recovery.',
+    proof: 'You receive a certificate, mass balance information and reporting where they apply.',
+    people: 'An engagement programme can bring employees, customers or students into the journey.'
+  };
+  var pf = $('.pf__form');
+  if (pf) {
+    var pfVal = function (n) { var c = pf.querySelector('input[name="' + n + '"]:checked'); return c ? c.value : null; };
+    var pathway = function () {
+      var w = pfVal('pf-what'), y = pfVal('pf-why'), W = PF_WHAT[w], list = W.sols.slice(), note = PF_WHY[y];
+      if (y === 'brand') {
+        var lead = list.indexOf('brand-protection') > -1 ? 'brand-protection' : list.indexOf('shredding') > -1 ? 'shredding' : 'secure-destruction';
+        list = [lead].concat(list.filter(function (s) { return s !== lead; }));
+        if (w === 'records') note = 'Nothing readable is left, so the information cannot be recovered or misused.';
+      }
+      if (y === 'recovery' && list.indexOf('zero-waste') < 0) list.push('zero-waste');
+      if (y === 'people') list.push('csr');
+      list = list.slice(0, 4);
+      var l = solLinks(list);
+      if (y === 'proof') l.push(DOC_LINK);
+      $('#pf-h').textContent = SOL[list[0]];
+      $('#pf-p').textContent = W.p + ' ' + note;
+      $('#pf-sols').innerHTML = links(l);
+      $('#pf-cta').href = enquiryHref('type=solution');
+      swap($('.pf__out'));
+    };
+    pf.addEventListener('change', pathway); pathway();
+  }
+
   /* ---------- Contact: preselect industry from the link ---------- */
   var qInd = new URLSearchParams(location.search).get('industry'), indSel = $('#f-industry');
   if (qInd && indSel) { $$('option', indSel).forEach(function (o) { if (o.textContent === qInd) indSel.value = o.value || o.textContent; }); }

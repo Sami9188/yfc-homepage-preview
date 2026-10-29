@@ -188,7 +188,43 @@
   </div>
 </section>
 
-<!-- ============ 3. Connected journey ============ -->
+<!-- ============ 3. Questions it answers ============ -->
+<section class="section section--tint" id="questions" aria-labelledby="qa-title">
+  <div class="wrap">
+    <div class="section-head section-head--split reveal">
+      <div>
+        <p class="eyebrow">Why it matters</p>
+        <h2 id="qa-title">The Questions Our Technology Helps Answer.</h2>
+      </div>
+      <p class="lead" style="max-width:46ch">Responsible action is only credible when you can show what happened. Choose a question to see which system answers it and what you receive.</p>
+    </div>
+    <div class="qa reveal">
+      <div class="qa__list" role="tablist" aria-label="Questions">
+        <button class="qa__q" type="button" role="tab" id="q-what" aria-controls="qa-panel" aria-selected="true" data-q="what"><span>01</span>What happened to our products?</button>
+        <button class="qa__q" type="button" role="tab" id="q-agreed" aria-controls="qa-panel" aria-selected="false" data-q="agreed"><span>02</span>Were they handled as we agreed?</button>
+        <button class="qa__q" type="button" role="tab" id="q-where" aria-controls="qa-panel" aria-selected="false" data-q="where"><span>03</span>Where did the materials go?</button>
+        <button class="qa__q" type="button" role="tab" id="q-much" aria-controls="qa-panel" aria-selected="false" data-q="much"><span>04</span>How much was recovered?</button>
+        <button class="qa__q" type="button" role="tab" id="q-prog" aria-controls="qa-panel" aria-selected="false" data-q="prog"><span>05</span>How do we run a take-back programme?</button>
+        <button class="qa__q" type="button" role="tab" id="q-good" aria-controls="qa-panel" aria-selected="false" data-q="good"><span>06</span>What good did our action support?</button>
+      </div>
+      <div class="qa__panel" id="qa-panel" role="tabpanel" aria-labelledby="q-what">
+        <p class="kicker">Answered by</p>
+        <ul class="qa__sys" aria-label="Systems">
+          <li data-sys="simba"><svg><use href="#i-db"/></svg>One Simba</li>
+          <li data-sys="fct"><svg><use href="#i-network"/></svg>Full Circle Technology</li>
+          <li data-sys="gs"><svg><use href="#i-trail"/></svg>Green Secure</li>
+        </ul>
+        <p class="qa__a" id="qa-a" aria-live="polite"></p>
+        <div class="qa__rec">
+          <span class="ic-badge"><svg><use href="#i-doc"/></svg></span>
+          <div><p class="kicker">What you receive</p><p id="qa-rec"></p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 4. Connected journey ============ -->
 <section class="section section--deep on-dark" id="layers" aria-labelledby="layers-title">
   <div class="wrap">
     <div class="section-head section-head--split reveal">
@@ -228,6 +264,121 @@
       </div>
     </div>
     <p class="verify-note reveal">Platform descriptions reflect current functionality and will be reviewed with the technology team before launch.</p>
+  </div>
+</section>
+
+<!-- ============ 5. Follow one consignment ============ -->
+<section class="section" id="consignment" aria-labelledby="fc-title">
+  <div class="wrap">
+    <div class="section-head section-head--split reveal">
+      <div>
+        <p class="eyebrow">From action to outcome</p>
+        <h2 id="fc-title">Follow One Consignment.</h2>
+      </div>
+      <p class="lead" style="max-width:46ch">See how a consignment of unsellable branded products moves from your site to a documented outcome, and what is recorded at each step.</p>
+    </div>
+    <div class="trip reveal">
+      <div class="trip__top">
+        <button class="btn btn--sm trip__play" type="button" data-trip-play aria-pressed="false"><svg><use href="#i-arrow"/></svg><span>Play the Journey</span></button>
+        <p class="trip__count" id="trip-count">Step 1 of 6</p>
+      </div>
+      <div class="trip__rail">
+        <div class="trip__track" aria-hidden="true"><i class="trip__fill"></i></div>
+        <ol class="trip__steps" role="tablist" aria-label="Journey steps">
+          <li><button type="button" role="tab" id="ts-0" aria-controls="trip-panel" aria-selected="true" data-step="0"><span class="trip__n"><svg><use href="#i-search"/></svg></span><span class="trip__t">Request</span></button></li>
+          <li><button type="button" role="tab" id="ts-1" aria-controls="trip-panel" aria-selected="false" data-step="1"><span class="trip__n"><svg><use href="#i-truck"/></svg></span><span class="trip__t">Collection</span></button></li>
+          <li><button type="button" role="tab" id="ts-2" aria-controls="trip-panel" aria-selected="false" data-step="2"><span class="trip__n"><svg><use href="#i-box"/></svg></span><span class="trip__t">Receiving</span></button></li>
+          <li><button type="button" role="tab" id="ts-3" aria-controls="trip-panel" aria-selected="false" data-step="3"><span class="trip__n"><svg><use href="#i-destroy"/></svg></span><span class="trip__t">Processing</span></button></li>
+          <li><button type="button" role="tab" id="ts-4" aria-controls="trip-panel" aria-selected="false" data-step="4"><span class="trip__n"><svg><use href="#i-recycle"/></svg></span><span class="trip__t">Recovery</span></button></li>
+          <li><button type="button" role="tab" id="ts-5" aria-controls="trip-panel" aria-selected="false" data-step="5"><span class="trip__n"><svg><use href="#i-cert"/></svg></span><span class="trip__t">Reporting</span></button></li>
+        </ol>
+      </div>
+      <div class="trip__panel" id="trip-panel" role="tabpanel" aria-labelledby="ts-0" aria-live="polite">
+        <div class="trip__copy">
+          <h3 id="trip-h"></h3>
+          <p id="trip-p"></p>
+        </div>
+        <dl class="trip__dl">
+          <div><dt>What is recorded</dt><dd id="trip-rec"></dd></div>
+          <div><dt>Systems involved</dt><dd id="trip-sys"></dd></div>
+        </dl>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 6. What you receive ============ -->
+<section class="section section--cream" id="receive" aria-labelledby="rc-title">
+  <div class="wrap">
+    <div class="section-head section-head--split reveal">
+      <div>
+        <p class="eyebrow">Evidence you can use</p>
+        <h2 id="rc-title">What You Receive.</h2>
+      </div>
+      <p class="lead" style="max-width:46ch">Documentation that turns responsible action into evidence you can share with auditors, leadership and stakeholders.</p>
+    </div>
+    <div class="docs reveal">
+      <div class="docs__tabs" role="tablist" aria-label="Documents">
+        <button class="docs__tab" type="button" role="tab" id="dt-cert" aria-controls="docs-stage" aria-selected="true" data-doc="cert"><span class="ic-badge"><svg><use href="#i-cert"/></svg></span><span><b>Certificate</b><small>Confirms how your products were handled.</small></span></button>
+        <button class="docs__tab" type="button" role="tab" id="dt-mass" aria-controls="docs-stage" aria-selected="false" data-doc="mass"><span class="ic-badge"><svg><use href="#i-layers"/></svg></span><span><b>Mass balance</b><small>Shows what was received and where it went.</small></span></button>
+        <button class="docs__tab" type="button" role="tab" id="dt-report" aria-controls="docs-stage" aria-selected="false" data-doc="report"><span class="ic-badge"><svg><use href="#i-doc"/></svg></span><span><b>Reporting</b><small>Brings outcomes and impact information together.</small></span></button>
+      </div>
+      <div class="docs__stage" id="docs-stage" role="tabpanel" aria-labelledby="dt-cert">
+        <article class="paper" data-paper="cert" data-pos="0">
+          <span class="paper__sample">Sample</span>
+          <header class="paper__head"><img src="assets/yfc-logo.png" alt="" width="720" height="342"><span>Ref. YFC-0000</span></header>
+          <p class="kicker">Certificate</p>
+          <h3>Secure Destruction and Recycling</h3>
+          <dl class="paper__dl">
+            <div><dt>Issued to</dt><dd>Your organisation</dd></div>
+            <div><dt>Products</dt><dd>Unsellable branded products</dd></div>
+            <div><dt>Process</dt><dd>Debranding, secure destruction and segregation</dd></div>
+            <div><dt>Outcome</dt><dd>Materials routed to recycling and recovery</dd></div>
+          </dl>
+          <footer class="paper__sign"><span class="paper__seal"><img src="assets/yfc-icon.png" alt="" width="288" height="288"></span><span><i></i>Authorised by YFC</span></footer>
+        </article>
+        <article class="paper" data-paper="mass" data-pos="1">
+          <span class="paper__sample">Sample</span>
+          <header class="paper__head"><img src="assets/yfc-logo.png" alt="" width="720" height="342"><span>Ref. YFC-0000</span></header>
+          <p class="kicker">Mass balance</p>
+          <h3>What Was Received and Where It Went</h3>
+          <div class="mb" aria-label="Illustrative split of received material by pathway">
+            <div class="mb__bar"><i style="--w:46%;--c:var(--forest)"></i><i style="--w:24%;--c:var(--emerald)"></i><i style="--w:18%;--c:var(--lint)"></i><i style="--w:12%;--c:var(--lemon)"></i></div>
+            <ul class="mb__key">
+              <li><i style="--c:var(--forest)"></i>Recycling</li>
+              <li><i style="--c:var(--emerald)"></i>Recovery</li>
+              <li><i style="--c:var(--lint)"></i>Upcycling</li>
+              <li><i style="--c:var(--lemon)"></i>Other approved routes</li>
+            </ul>
+          </div>
+          <dl class="paper__dl">
+            <div><dt>Received</dt><dd><i class="sk"></i></dd></div>
+            <div><dt>By material</dt><dd><i class="sk sk--s"></i></dd></div>
+            <div><dt>By pathway</dt><dd><i class="sk"></i></dd></div>
+          </dl>
+        </article>
+        <article class="paper" data-paper="report" data-pos="2">
+          <span class="paper__sample">Sample</span>
+          <header class="paper__head"><img src="assets/yfc-logo.png" alt="" width="720" height="342"><span>Ref. YFC-0000</span></header>
+          <p class="kicker">Reporting</p>
+          <h3>Outcomes and Impact</h3>
+          <ul class="paper__tiles">
+            <li><span>Received</span><i class="sk"></i></li>
+            <li><span>Recycled or recovered</span><i class="sk"></i></li>
+            <li><span>Diverted from disposal</span><i class="sk"></i></li>
+            <li><span>Initiatives supported</span><i class="sk"></i></li>
+          </ul>
+          <p class="paper__line"><i class="sk sk--l"></i><i class="sk sk--m"></i></p>
+        </article>
+      </div>
+    </div>
+    <ul class="principles reveal" aria-label="How we state figures">
+      <li><b>Unit</b><span>What is being counted, such as tonnes received.</span></li>
+      <li><b>Period</b><span>The time the figure covers.</span></li>
+      <li><b>Boundary</b><span>Which sites, services or programmes it includes.</span></li>
+      <li><b>Method</b><span>How the figure was measured or calculated.</span></li>
+    </ul>
+    <p class="verify-note reveal">Every figure we report states its unit, period, boundary and method. The documents above are illustrative; formats and contents depend on the service and agreement and will be confirmed with the YFC team before launch.</p>
   </div>
 </section>
 
