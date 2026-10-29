@@ -44,6 +44,15 @@
     sync();
   }
 
+  /* ---------- Home: draw the One Earth circle when it comes into view ---------- */
+  $$('.lifeline').forEach(function (life) {
+    if (reduce || !('IntersectionObserver' in window)) { life.classList.add('is-in'); return; }
+    var lio = new IntersectionObserver(function (en) {
+      if (en[0].isIntersecting) { life.classList.add('is-in'); lio.disconnect(); }
+    }, { threshold: 0.35 });
+    lio.observe(life);
+  });
+
   /* ---------- Count-up numbers outside the homepage indicators ---------- */
   var countWrap = $$('[data-countup]');
   if (countWrap.length && !reduce && 'IntersectionObserver' in window) {
