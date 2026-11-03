@@ -1,6 +1,6 @@
 # YES Full Circle Solutions — website redesign (full site, preview branch)
 
-This `full-site` branch holds all 11 pages from the **YFC Website Pagewise Content** document. It is **not live**. The live GitHub Pages site deploys from `main`, which currently publishes Home, Our Story, Impact and Stories, Solutions, Technology and Industries.
+This `full-site` branch holds all 11 pages from the **YFC Website Pagewise Content** document. All 11 are now live: `main` publishes every page.
 
 | Page | File |
 |---|---|
